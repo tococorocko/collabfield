@@ -10,7 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use Bootstrap
-gem 'bootstrap-sass', '>= 3.4.1'
+gem 'bootstrap-sass', '= 3.4.1'
 # Use Bootstrap form
 gem 'bootstrap_form'
 # Use SCSS for stylesheets
@@ -38,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '~> 1.1.0', require: false
 
 # Use jquery, necessary for bootstrap
 gem 'jquery-rails'
@@ -61,9 +61,17 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  # gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
+  # gem 'capybara-selenium'
+  gem 'webdrivers', '~> 4.0'
+
+  gem 'rspec-rails', '~> 3.6'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
+  gem 'headless'
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara'
+  gem 'database_cleaner'
 end
