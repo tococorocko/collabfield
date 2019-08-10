@@ -4,8 +4,9 @@ class PostsController < ApplicationController
   end
 
   def hobby
-    @posts = Post.where(category="Hobby")
+    @posts = Post.all
   end
+
   def study
 
   end
