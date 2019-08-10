@@ -9,7 +9,7 @@ def seed_users
   user_id = 0
   10.times do
     User.create(
-      name: "name#{user_id}",
+      name: Faker::Superhero.name,
       email: "name#{user_id}@test.com",
       password: '123456',
       password_confirmation: '123456'
@@ -45,9 +45,9 @@ def seed_posts
   categories.each do |category|
     5.times do
       Post.create(
-        title: Faker::Lorem.sentences[0],
-        content: Faker::Lorem.sentences[0],
-        user_id: rand(1..9),
+        title: Faker::Quote.famous_last_words,
+        content: Faker::Quote.yoda,
+        user_id: User.all.sample.id,
         category_id: category.id
       )
     end
