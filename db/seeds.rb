@@ -9,8 +9,8 @@ def seed_users
   user_id = 0
   10.times do
     User.create(
-      name: "test#{user_id}",
-      email: "test#{user_id}@test.com",
+      name: "name#{user_id}",
+      email: "name#{user_id}@test.com",
       password: '123456',
       password_confirmation: '123456'
     )
