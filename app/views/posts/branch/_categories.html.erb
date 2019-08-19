@@ -7,7 +7,9 @@
     <% @categories.each do |category| %>
       <li class="category-item">
         <%= link_to category.name,
-                    send(branch_path_name, category: category.name),
+                    send(branch_path_name, category: category.name)
+                      #branch_path_name see Line 1, category: ...
+                      # --> adding params ?category=Reading
                     :class => ("selected-item" if params[:category] == category.name) %>
       </li>
     <% end %>
