@@ -63,7 +63,7 @@ RSpec.configure do |config|
   end
 
   # Capybara.javascript_driver = :chrome
-  # Capybara.javascript_driver = :headless_chrome
+  Capybara.javascript_driver = :headless_chrome
 
   # DatabaseCleaner setup
   config.before(:suite) do

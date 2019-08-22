@@ -1,18 +1,8 @@
 <%= render 'posts/modal' %>
 <div class="container">
   <div class="row">
-    <div id="side-menu" class="col-sm-3">
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-    <div id="main-content" class="col-sm-9">
-      <h1>Posts</h1>
-      <%= render @posts %>
-    </div>
-
+    <%= render 'pages/index/sidebar' %>
+    <%= render 'pages/index/main_content' %>
   </div>
 </div>
 
