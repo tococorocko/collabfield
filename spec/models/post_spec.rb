@@ -1,12 +1,64 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe Post, type: :model do
 
   context 'Associations' do
-    it 'has_many posts' do
-      association = described_class.reflect_on_association(:posts)
-      expect(association.macro).to eq :has_many
-      expect(association.options[:dependent]).to eq :destroy
+    it 'belongs_to user' do
+      association = described_class.reflect_on_association(:user).macro
+      expect(association).to eq :belongs_to
+    end
+
+    it 'belongs_to category' do
+      association = described_class.reflect_on_association(:user).macro
+      expect(association).to eq :belongs_to
+    end
+  end
+
+  context 'Validations' do
+    let(:post) { create(:post) }
+
+    it 'creates succesfully' do
+      expect(post).to be_valid
+    end
+
+    it 'is not valid without a category' do
+      post.category_id = nil
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid without a title' do
+      post.title = nil
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid  without a user_id' do
+      post.user_id = nil
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid  with a title, shorter than 5 characters' do
+      post.title = 'a' * 4
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid  with a title, longer than 255 characters' do
+      post.title = 'a' * 260
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid without a content' do
+      post.content = nil
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid  with a content, shorter than 20 characters' do
+      post.content = 'a' * 10
+      expect(post).not_to be_valid
+    end
+
+    it 'is not valid  with a content, longer than 1000 characters' do
+      post.content = 'a' * 1050
+      expect(post).not_to be_valid
     end
   end
 
@@ -44,4 +96,5 @@ RSpec.describe User, type: :model do
       expect(Post.search('great')[0].id).to eq post.id
     end
   end
+
 end
