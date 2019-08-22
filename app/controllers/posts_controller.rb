@@ -25,14 +25,13 @@ class PostsController < ApplicationController
       format.html
       format.js { render partial: 'posts/posts_pagination_page' }
     end
-
   end
 
   def get_posts
-    PostsForBranchService.new({
+    PostsForBranchService.new(
       search: params[:search],
       category: params[:category],
       branch: params[:action]
-    }).call
+    ).call
   end
 end
