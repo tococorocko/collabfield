@@ -1,4 +1,4 @@
-class PostsForBranchService
+class PostsForBranchService < ApplicationService
   def initialize(params)
     @search = params[:search]
     @category = params[:category]

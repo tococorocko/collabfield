@@ -45,11 +45,11 @@ class PostsController < ApplicationController
   end
 
   def get_posts
-    PostsForBranchService.new(
+    PostsForBranchService.call(
       search: params[:search],
       category: params[:category],
       branch: params[:action]
-    ).call
+    ) # syntactic sugar through services/application_service.rb --> instead of .new().call
   end
 
   def post_params
