@@ -3,6 +3,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    if user_signed_in?
+      @message_has_been_sent = conversation_exist?
+    end
   end
 
   def new
@@ -34,6 +38,11 @@ class PostsController < ApplicationController
 
   private
 
+  def post_params
+    params.require(:post).permit(:content, :title, :category_id)
+                          .merge(user_id: current_user.id)
+  end
+
   def posts_for_branch(branch)
     @categories = Category.where(branch: branch)
     @posts = get_posts.paginate(page: params[:page])
@@ -52,8 +61,7 @@ class PostsController < ApplicationController
     ) # syntactic sugar through services/application_service.rb --> instead of .new().call
   end
 
-  def post_params
-    params.require(:post).permit(:content, :title, :category_id)
-                          .merge(user_id: current_user.id)
+  def conversation_exist?
+    Private::Conversation.between_users(current_user.id, @post.user.id).present?  # between_users --> scope in conversation-model
   end
 end
